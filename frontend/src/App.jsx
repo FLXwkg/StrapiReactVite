@@ -4,6 +4,7 @@ import ArtisansList from './components/Artisans/ArtisansList'
 
 function App() {
   // On prépare la variable qui va stocker les composants
+
   const [artisans, setArtisans] = useState([])
   useEffect(()=>{
     // on recup les datas
