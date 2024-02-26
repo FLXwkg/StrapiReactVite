@@ -24,5 +24,11 @@
   border: 1px solid #46d879;
   border-radius: 10px;
   max-width: 25%;
+  height: 400px;
   padding: 10px;
+}
+
+.product-pict {
+  height: 200px;
+  width: 200px;
 }

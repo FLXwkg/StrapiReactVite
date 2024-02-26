@@ -10,10 +10,10 @@ function ProductsListItem({ product }) {
 
   return (
     <div className="product-item">
-      <h3>{name}</h3>
-      <img src={urls[0]}/>
-      <p>{price}</p>
-      <p>{description}</p>
+      <h3 className="product-name">{name}</h3>
+      <img className="product-pict" src={urls[0]}/>
+      <p className="product-price">{price} €</p>
+      <p className="product-desc">{description}</p>
     </div>
   );
 }
