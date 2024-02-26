@@ -1,0 +1,19 @@
+.artisan-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.artisan-desc {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.artisan-pp {
+  width: 500px;
+  height: auto;
+  border-radius: 10px;
+}
