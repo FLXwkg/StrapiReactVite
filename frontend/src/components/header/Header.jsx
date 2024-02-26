@@ -1,3 +1,4 @@
+import Button from '../forms/buttons/Button'
 import './Header.css'
 
 function Header() {
@@ -9,6 +10,11 @@ function Header() {
             <a href='/services'>Services</a>
             <a href='/about'>About</a>
             <a href='/contact'>Contact</a>
+            <Button type='button'>
+              <a href="/authentication">
+              Connexion
+              </a>
+            </Button>
         </nav>
     </header>
     

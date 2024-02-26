@@ -5,6 +5,7 @@ import Contact from '../pages/Contact'
 import Artisans from '../pages/Artisans'
 import Home from '../pages/Home'
 import Artisan from '../pages/Artisan'
+import Auth from '../pages/Auth'
 function Router (){
     return (
         <BrowserRouter>
@@ -14,6 +15,7 @@ function Router (){
                     <Route index element={<Artisans/>}/>
                     <Route path=':artisanSlug' element={<Artisan/>}/>
                 </Route>
+                <Route path='authentication' element={<Auth/>}/>
                 <Route path='about' element={<About/>}/>
                 <Route path='contact' element={<Contact/>}/>
                 <Route path='services' element={<Services/>}/>
