@@ -8,16 +8,16 @@ import { useNavigate } from "react-router-dom";
 function LoginForm() {
   const [formData, setFormData] = useState({
     identifier: "flexhiro@sensei.jap",
-    password: "123456",
+    password: "1234567",
   });
   const navigate = useNavigate();
-  const { response, /*error, isLoading, */login } = useLogin();
+  const { response, error, /* isLoading, */ login } = useLogin();
 
   useEffect(() => {
-    if(response && response.jwt){
-      navigate('/dashboard')
+    if (response && response.jwt) {
+      navigate("/dashboard");
     }
-  }, [response])
+  }, [response]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -55,6 +55,9 @@ function LoginForm() {
           //error={errors.email}
           required
         />
+        {
+          error && <p style={{color: 'red'}}>{error}</p>
+        }
         <Button type="submit" onClick={handleSubmit}>
           Se connecter
         </Button>

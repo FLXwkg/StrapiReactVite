@@ -1,4 +1,5 @@
 import { useCallback, useState } from "react";
+import { toast } from "react-toastify";
 
 const useLogin = () => {
   const [response, setResponse] = useState();
@@ -15,15 +16,19 @@ const useLogin = () => {
           'Accept': 'application/json'
         },
         body: JSON.stringify({identifier, password})
-      })   
-      const _responseJson = await _response.json()
-      if(_responseJson){
-        localStorage.setItem('AUTH', JSON.stringify(_responseJson))
+      })  
+      const _responseJson = await _response.json() 
+      if(_response.ok){
+        if(_responseJson){
+          localStorage.setItem('AUTH', JSON.stringify(_responseJson))
+        }
+        setResponse(_responseJson)
+      } else {
+        setError(_responseJson?.error?.message)
+        toast.error(_responseJson?.error?.message)
       }
-      setResponse(_responseJson)
       setIsLoading(false)   
     } catch (error) {
-      console.error(error)
       setError(error)      
       setIsLoading(false)
     }

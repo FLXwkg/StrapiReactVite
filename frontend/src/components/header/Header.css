@@ -2,6 +2,9 @@ header.header {
   padding: 0;
   margin: 0;
 }
+header.header button{
+  margin-left: auto;
+}
 
 header.header nav {
   display: flex;

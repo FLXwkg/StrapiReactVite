@@ -12,7 +12,7 @@ function Auth() {
     const AUTH = JSON.parse(authString);
     const token = AUTH?.jwt;
     if (token) navigate("/dashboard");
-  }, []);
+  });
 
   return (
     <>
