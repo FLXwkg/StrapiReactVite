@@ -362,84 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiArtisanArtisan extends Schema.CollectionType {
-  collectionName: 'artisans';
-  info: {
-    singularName: 'artisan';
-    pluralName: 'artisans';
-    displayName: 'Artisan';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.RichText;
-    profilePicture: Attribute.Media;
-    slug: Attribute.UID<'api::artisan.artisan', 'name'>;
-    produits: Attribute.Relation<
-      'api::artisan.artisan',
-      'oneToMany',
-      'api::produit.produit'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::artisan.artisan',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::artisan.artisan',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiProduitProduit extends Schema.CollectionType {
-  collectionName: 'produits';
-  info: {
-    singularName: 'produit';
-    pluralName: 'produits';
-    displayName: 'Produit';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String;
-    description: Attribute.RichText;
-    pictures: Attribute.Media;
-    price: Attribute.Decimal;
-    artisan: Attribute.Relation<
-      'api::produit.produit',
-      'manyToOne',
-      'api::artisan.artisan'
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::produit.produit',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::produit.produit',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -846,6 +768,84 @@ export interface PluginI18NLocale extends Schema.CollectionType {
   };
 }
 
+export interface ApiArtisanArtisan extends Schema.CollectionType {
+  collectionName: 'artisans';
+  info: {
+    singularName: 'artisan';
+    pluralName: 'artisans';
+    displayName: 'Artisan';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.RichText;
+    profilePicture: Attribute.Media;
+    slug: Attribute.UID<'api::artisan.artisan', 'name'>;
+    produits: Attribute.Relation<
+      'api::artisan.artisan',
+      'oneToMany',
+      'api::produit.produit'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::artisan.artisan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::artisan.artisan',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiProduitProduit extends Schema.CollectionType {
+  collectionName: 'produits';
+  info: {
+    singularName: 'produit';
+    pluralName: 'produits';
+    displayName: 'Produit';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    description: Attribute.RichText;
+    pictures: Attribute.Media;
+    price: Attribute.Decimal;
+    artisan: Attribute.Relation<
+      'api::produit.produit',
+      'manyToOne',
+      'api::artisan.artisan'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::produit.produit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::produit.produit',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -856,8 +856,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::artisan.artisan': ApiArtisanArtisan;
-      'api::produit.produit': ApiProduitProduit;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -866,6 +864,8 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'plugin::i18n.locale': PluginI18NLocale;
+      'api::artisan.artisan': ApiArtisanArtisan;
+      'api::produit.produit': ApiProduitProduit;
     }
   }
 }

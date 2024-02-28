@@ -4,11 +4,14 @@ import Input from './inputs/Input'
 import './Form.css'
 import { validateRegisterForm } from '../../services/formAuthValidation'
 import { toast } from 'react-toastify'
+import useAuth from '../../hooks/Auth'
 
 function RegisterForm () {
   /* Version simple mais repetitive:
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('') */
+
+  const { error, register } = useAuth()
 
   const [formData, setFormData] = useState({
     firstName: 'Flex',
@@ -33,7 +36,7 @@ function RegisterForm () {
     })
   }
 
-  const handleSubmit = (event) => {
+  const handleError = (event) => {
     event.preventDefault()
     const _errors = validateRegisterForm(formData)
     if (_errors) {
@@ -42,8 +45,13 @@ function RegisterForm () {
     toast.error(`Formulaire soumis : ${formData.lastName} ${formData.firstName}`)
   }
 
+  const handleSubmit = (event) => {
+    handleError()
+    register(formData)
+  }
+
   return (
-    <form className='form-container' onSubmit={handleSubmit}>
+    <form className='form-container'>
       <Input
         name='lastName'
         label='Nom : '
@@ -91,7 +99,12 @@ function RegisterForm () {
         error={errors.password}
         required
       />
-      <Button type='submit'>S'enregistrer</Button>
+      {
+        error && <p style={{ color: 'red' }}>{error}</p>
+      }
+      <Button type='submit' onClick={handleSubmit}>
+        S'enregistrer
+      </Button>
     </form>
   )
 }

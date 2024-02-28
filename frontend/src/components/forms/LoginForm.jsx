@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import Input from './inputs/Input'
 import './Form.css'
-import useLogin from '../../hooks/Auth'
+import useAuth from '../../hooks/Auth'
 import Button from './buttons/Button'
 import { useNavigate } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ function LoginForm () {
     password: '1234567'
   })
   const navigate = useNavigate()
-  const { response, error, /* isLoading, */ login } = useLogin()
+  const { response, error, login } = useAuth()
 
   useEffect(() => {
     if (response && response.jwt) {
