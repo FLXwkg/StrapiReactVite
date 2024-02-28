@@ -1,26 +1,26 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-function ArtisanHeader({ attributes }) {
+function ArtisanHeader ({ attributes }) {
   const picturl =
-    "http://localhost:1337" + attributes.profilePicture?.data?.attributes?.url;
+    'http://localhost:1337' + attributes.profilePicture?.data?.attributes?.url
 
   return (
-    <div className="artisan-header">
+    <div className='artisan-header'>
       <div>
         <h1>{attributes.name}</h1>
       </div>
       <div>
-        <img src={picturl} className="artisan-pp" />
+        <img src={picturl} className='artisan-pp' />
       </div>
-      <div className="artisan-desc">
+      <div className='artisan-desc'>
         <p>{attributes.description}</p>
       </div>
     </div>
-  );
+  )
 }
 
 ArtisanHeader.propTypes = {
-  attributes: PropTypes.object,
-};
+  attributes: PropTypes.object
+}
 
-export default ArtisanHeader;
+export default ArtisanHeader
