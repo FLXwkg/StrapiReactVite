@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Button from "./buttons/Button";
 import Input from "./inputs/Input";
-import "./RegisterForm.css";
+import "./Form.css";
 import { validateRegisterForm } from "../../services/formAuthValidation";
 
 function RegisterForm() {
@@ -62,6 +62,7 @@ function RegisterForm() {
         required
       />
       <Input
+        type="email"
         name="email"
         label="Email : "
         placeholder="Entrez votre Email"
@@ -80,6 +81,7 @@ function RegisterForm() {
         required
       />
       <Input
+        type="password"
         name="password"
         label="Mot de passe : "
         placeholder="Entrez votre Prénom"

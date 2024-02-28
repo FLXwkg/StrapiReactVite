@@ -1,11 +1,11 @@
 import { PropTypes } from "prop-types"
 
-function Input({ label, name, value, placeholder, onChange, error }){
+function Input({ label, type = "text", name, value, placeholder, onChange, error }){
     return(
         <>
             <label>
                 {label}
-                <input name={name} value={value} placeholder={placeholder} onChange={onChange}/>
+                <input type={type} name={name} value={value} placeholder={placeholder} onChange={onChange}/>
             </label>
             {
                 error && (<p className="error">{error}</p>)
@@ -16,6 +16,7 @@ function Input({ label, name, value, placeholder, onChange, error }){
 
 Input.propTypes = {
     label: PropTypes.string,
+    type: PropTypes.string,
     name: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func,
