@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 
 function ArtisanHeader ({ attributes }) {
   const picturl =
-    'http://localhost:1337' + attributes.profilePicture?.data?.attributes?.url
+    `${process.env.REACT_APP_BASE_URL}` + attributes.profilePicture?.data?.attributes?.url
 
   return (
     <div className='artisan-header'>

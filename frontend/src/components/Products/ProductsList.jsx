@@ -9,10 +9,10 @@ function ProductsList ({ products }) {
         <h2>Liste de produits</h2>
         <div className='list'>
           {
-                        products.map(prod => (
-                          <ProductsListItem key={prod.id} product={prod} />
-                        ))
-                    }
+            products.map(prod => (
+              <ProductsListItem key={prod.id} product={prod} />
+            ))
+          }
         </div>
       </div>
     </>

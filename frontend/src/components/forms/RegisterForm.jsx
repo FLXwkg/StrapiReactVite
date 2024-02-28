@@ -50,7 +50,7 @@ function RegisterForm () {
         placeholder='Entrez votre nom'
         value={formData.lastName}
         onChange={handleChange}
-        error={errors.firstName}
+        error={errors.lastName}
         required
       />
       <Input
@@ -59,7 +59,7 @@ function RegisterForm () {
         placeholder='Entrez votre prénom'
         value={formData.firstName}
         onChange={handleChange}
-        error={errors.lastName}
+        error={errors.firstName}
         required
       />
       <Input

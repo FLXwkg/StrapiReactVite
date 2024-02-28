@@ -5,7 +5,7 @@ function ProductsListItem ({ product }) {
   const urls = []
   pictures.data.forEach((picture, i) => {
     const url = picture?.attributes?.url
-    urls[i] = `http://localhost:1337${url}`
+    urls[i] = process.env.REACT_APP_BASE_URL + url
   })
 
   return (

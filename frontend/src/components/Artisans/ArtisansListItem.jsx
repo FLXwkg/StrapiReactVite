@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 function ArtisansListItem ({ artisan }) {
   const { name, slug, description, profilePicture } = artisan.attributes
   const picturl =
-    'http://localhost:1337' + profilePicture?.data?.attributes?.url
+    `${process.env.REACT_APP_BASE_URL}` + profilePicture?.data?.attributes?.url
 
   return (
     <>

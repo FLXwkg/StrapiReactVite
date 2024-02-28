@@ -9,7 +9,7 @@ const validateRegisterForm = (formData) => {
       errors.firstName = 'Last name is too short'
     }
   } else {
-    throw 'Invalid parameter type'
+    throw new Error('Invalid parameter type')
   }
   return errors
 }

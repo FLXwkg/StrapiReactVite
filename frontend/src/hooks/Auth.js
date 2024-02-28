@@ -9,7 +9,7 @@ const useLogin = () => {
   const login = useCallback(async ({ identifier, password }) => {
     try {
       setIsLoading(true)
-      const _response = await fetch('http://localhost:1337/api/auth/local', {
+      const _response = await fetch(`${process.env.REACT_APP_API_URL}/auth/local`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
