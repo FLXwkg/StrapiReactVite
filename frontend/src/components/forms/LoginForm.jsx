@@ -1,23 +1,23 @@
 import { useEffect, useState } from 'react'
 import Input from './inputs/Input'
 import './Form.css'
-import useAuth from '../../hooks/Auth'
+import { useAuth } from '../../contexts/authContext'
 import Button from './buttons/Button'
 import { useNavigate } from 'react-router-dom'
 
 function LoginForm () {
   const [formData, setFormData] = useState({
     identifier: 'flexhiro@sensei.jap',
-    password: '1234567'
+    password: '123456'
   })
   const navigate = useNavigate()
-  const { response, error, login } = useAuth()
+  const { state: { user, jwt, error }, login } = useAuth()
 
   useEffect(() => {
-    if (response && response.jwt) {
+    if (user && jwt) {
       navigate('/dashboard')
     }
-  }, [response])
+  }, [user])
 
   const handleSubmit = (event) => {
     event.preventDefault()
