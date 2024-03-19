@@ -1,3 +1,4 @@
+import { Card, CardBody, CardHeader } from '@nextui-org/react'
 import PropTypes from 'prop-types'
 
 function ProductsListItem ({ product }) {
@@ -9,12 +10,16 @@ function ProductsListItem ({ product }) {
   })
 
   return (
-    <div className='product-item'>
-      <h3 className='product-name'>{name}</h3>
-      <img className='product-pict' src={urls[0]} />
-      <p className='product-price'>{price} €</p>
-      <p className='product-desc'>{description}</p>
-    </div>
+    <Card className='product-item'>
+      <CardHeader>
+        <h3 className='product-name'>{name}</h3>
+      </CardHeader>
+      <CardBody>
+        <img className='product-pict' src={urls[0]} />
+        <p className='product-price'>{price} €</p>
+        <p className='product-desc'>{description}</p>
+      </CardBody>
+    </Card>
   )
 }
 

@@ -15,12 +15,12 @@ function Auth () {
   })
 
   return (
-    <>
+    <div className='flex flex-col items-center'>
       {isRegister ? <RegisterForm /> : <LoginForm />}
-      <a onClick={() => setIsRegister(!isRegister)}>
+      <a onClick={() => setIsRegister(!isRegister)} className='m-2' color='primary-50'>
         {!isRegister ? "Je n'ai pas de compte" : "J'ai déja un compte"}
       </a>
-    </>
+    </div>
   )
 }
 

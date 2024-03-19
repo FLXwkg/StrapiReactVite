@@ -1,4 +1,3 @@
-import './App.css'
 import Header from './components/header/Header'
 import Router from './navigation/Router'
 import { NextUIProvider } from '@nextui-org/react'

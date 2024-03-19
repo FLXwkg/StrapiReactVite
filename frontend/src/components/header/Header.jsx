@@ -1,26 +1,21 @@
-import Button from '../forms/buttons/Button'
-import './Header.css'
+import { Button } from '@nextui-org/react'
 
 function Header () {
   /* const authString = localStorage.getItem("AUTH");
   const AUTH = JSON.parse(authString);
   const token = AUTH?.jwt; */
   return (
-    <header className='header'>
-      <nav>
+    <header className='flex flex-row w-full p-3 justify-around' color=''>
+      <nav className='flex w-full align-center gap-9 ms-20 font-medium'>
         <a href='/'>Home</a>
         <a href='/artisans'>Artisans</a>
         <a href='/services'>Services</a>
         <a href='/about'>About</a>
         <a href='/contact'>Contact</a>
-        {// token ? (
-          <Button type='button'>
-            <a href='/authentication'>Connexion</a>
-          </Button>
-        /* ) : (
-          <p>oui</p>
-        ) */}
       </nav>
+      <Button className='ms-80' type='button'>
+        <a href='/authentication'>Connexion</a>
+      </Button>
     </header>
   )
 }

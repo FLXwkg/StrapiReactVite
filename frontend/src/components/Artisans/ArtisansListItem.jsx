@@ -1,3 +1,4 @@
+import { Card, CardBody, CardHeader, Link } from '@nextui-org/react'
 import PropTypes from 'prop-types'
 
 function ArtisansListItem ({ artisan }) {
@@ -7,16 +8,16 @@ function ArtisansListItem ({ artisan }) {
 
   return (
     <>
-      <div className='card'>
-        <div className='card-author'>
-          <img className='profile-picture' src={picturl} />
+      <Card className='m-3 p-3'>
+        <CardHeader className='flex flex-col '>
+          <img className='w-40' src={picturl} />
           <h3 className='author-name'>{name}</h3>
-        </div>
-        <a className='artisan-button' href={`/artisans/${slug} `}>
+        </CardHeader>
+        <CardBody as={Link} href={`/artisans/${slug} `}>
           Voir les articles
-        </a>
+        </CardBody>
         <p>{description}</p>
-      </div>
+      </Card>
     </>
   )
 }

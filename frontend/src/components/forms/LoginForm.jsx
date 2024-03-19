@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import './Form.css'
 import { useAuth } from '../../contexts/authContext'
 import { useNavigate } from 'react-router-dom'
 import { Button, Input } from '@nextui-org/react'
@@ -11,7 +10,7 @@ function LoginForm () {
   })
   const navigate = useNavigate()
 
-  const { state: { user, jwt, error }, login } = useAuth()
+  const { state: { user, jwt, error }, login, loading } = useAuth()
 
   useEffect(() => {
     if (user && jwt) {
@@ -33,7 +32,7 @@ function LoginForm () {
 
   return (
     <>
-      <form className='form-container'>
+      <form className='flex flex-col items-center justify-center w-1/2 gap-2'>
         <h2>Se connecter</h2>
         <Input
           name='identifier'
@@ -56,7 +55,7 @@ function LoginForm () {
         {
           error && <p style={{ color: 'red' }}>{error}</p>
         }
-        <Button type='submit' onClick={handleSubmit}>
+        <Button isLoading={loading} type='submit' onClick={handleSubmit}>
           Se connecter
         </Button>
       </form>

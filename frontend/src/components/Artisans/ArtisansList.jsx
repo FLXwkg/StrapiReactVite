@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import ArtisansListItem from './ArtisansListItem'
-import './ArtisansList.css'
 
 function ArtisansList ({ artisans }) {
   if (!artisans || artisans.length < 1) {
@@ -8,14 +7,14 @@ function ArtisansList ({ artisans }) {
   }
   return (
     <>
-      <div className='list-container'>
+      <div className='flex flex-col gap-4 items-center justify-center'>
         <h2>Liste d&apos;Artisans</h2>
-        <div className='list'>
+        <div className='flex flex-row'>
           {
-                        artisans.map(art => (
-                          <ArtisansListItem key={art.id} artisan={art} />
-                        ))
-                    }
+            artisans.map(art => (
+              <ArtisansListItem key={art.id} artisan={art} />
+            ))
+          }
         </div>
       </div>
     </>

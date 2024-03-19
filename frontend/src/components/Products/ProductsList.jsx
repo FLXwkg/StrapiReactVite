@@ -1,13 +1,12 @@
 import PropTypes from 'prop-types'
 import ProductsListItem from './ProductsListItem'
-// import './ProductsList.css'
 
 function ProductsList ({ products }) {
   return (
     <>
-      <div className='list-container'>
-        <h2>Liste de produits</h2>
-        <div className='list'>
+      <div className='flex flex-col'>
+        <h2 className='flex justify-center p-3 w-full font-semibold'>Liste de produits</h2>
+        <div className='flex flex-row justify-center gap-5 py-3 px-20'>
           {
             products.map(prod => (
               <ProductsListItem key={prod.id} product={prod} />

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useFetch } from '../hooks/Api'
 import ArtisanHeader from '../components/Artisan/ArtisanHeader.Jsx'
-import '../components/Artisan/Artisan.css'
+
 import ProductsList from '../components/Products/ProductsList'
 
 function Artisan () {

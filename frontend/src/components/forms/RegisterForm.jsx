@@ -1,17 +1,16 @@
 import { useState } from 'react'
-import Button from './buttons/Button'
-import Input from './inputs/Input'
-import './Form.css'
+
 import { validateRegisterForm } from '../../services/formAuthValidation'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../contexts/authContext'
+import { Button, Input } from '@nextui-org/react'
 
 function RegisterForm () {
   /* Version simple mais repetitive:
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('') */
 
-  const { error, register } = useAuth()
+  const { error, register, loading } = useAuth()
 
   const [formData, setFormData] = useState({
     firstName: 'Flex',
@@ -51,7 +50,7 @@ function RegisterForm () {
   }
 
   return (
-    <form className='form-container'>
+    <form className='flex flex-col gap-2'>
       <Input
         name='lastName'
         label='Nom : '
@@ -102,7 +101,7 @@ function RegisterForm () {
       {
         error && <p style={{ color: 'red' }}>{error}</p>
       }
-      <Button type='submit' onClick={handleSubmit}>
+      <Button isLoading={loading} type='submit' onClick={handleSubmit}>
         S'enregistrer
       </Button>
     </form>
