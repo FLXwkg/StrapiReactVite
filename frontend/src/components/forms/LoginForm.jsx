@@ -11,6 +11,7 @@ function LoginForm () {
     password: '123456'
   })
   const navigate = useNavigate()
+
   const { state: { user, jwt, error }, login } = useAuth()
 
   useEffect(() => {
@@ -42,7 +43,6 @@ function LoginForm () {
           placeholder='Entrez votre Email'
           value={formData.identifier}
           onChange={handleChange}
-          // error={errors.email}
           required
         />
         <Input
@@ -52,7 +52,6 @@ function LoginForm () {
           placeholder='Entrez votre mot de passe'
           value={formData.password}
           onChange={handleChange}
-          // error={errors.email}
           required
         />
         {

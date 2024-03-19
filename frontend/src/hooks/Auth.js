@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+/* import { useCallback, useState } from 'react'
 import { toast } from 'react-toastify'
 
 const useAuth = () => {
@@ -63,4 +63,4 @@ const useAuth = () => {
   }, [])
   return { response, error, isLoading, login, register }
 }
-export default useAuth
+export default useAuth */

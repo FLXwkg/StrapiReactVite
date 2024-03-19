@@ -1,5 +1,6 @@
-import { createContext, useContext, useReducer } from 'react'
+import { createContext, useContext, useEffect, useReducer } from 'react'
 import { loginApi } from '../services/api'
+import { toast } from 'react-toastify'
 
 const AuthContext = createContext()
 
@@ -63,10 +64,10 @@ const authFactory = (dispatch) => ({
         }
       })
     } catch (error) {
-      console.log(error)
+      toast.error('Identifiant ou Mot de passe incorrect')
       dispatch({
         type: actionTypes.ERROR,
-        data: error
+        data: { error: 'Identifiant ou Mot de passe incorrect' }
       })
     }
   },
@@ -76,7 +77,14 @@ const authFactory = (dispatch) => ({
 })
 
 const AuthProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(authReducer, initialState)
+  const savedState = window.localStorage.getItem('AUTH')
+  const _initialState = savedState ? JSON.parse(savedState) : initialState
+
+  const [state, dispatch] = useReducer(authReducer, _initialState)
+
+  useEffect(() => {
+    window.localStorage.setItem('AUTH', JSON.stringify(state))
+  }, [state])
 
   return (
     <AuthContext.Provider value={{ state, ...authFactory(dispatch) }}>

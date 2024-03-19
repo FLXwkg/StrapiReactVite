@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react'
 import RegisterForm from '../components/forms/RegisterForm'
 import LoginForm from '../components/forms/LoginForm'
+import { useAuth } from '../contexts/authContext'
 import { useNavigate } from 'react-router-dom'
 
 function Auth () {
   const [isRegister, setIsRegister] = useState(false)
   const navigate = useNavigate()
 
+  const { state: { user, jwt } } = useAuth()
+
   useEffect(() => {
-    const authString = window.localStorage.getItem('AUTH')
-    const AUTH = JSON.parse(authString)
-    const token = AUTH?.jwt
-    if (token) navigate('/dashboard')
+    if (jwt && user) navigate('/dashboard')
   })
 
   return (
