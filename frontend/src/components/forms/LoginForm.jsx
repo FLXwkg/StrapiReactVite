@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import Input from './inputs/Input'
 import './Form.css'
 import { useAuth } from '../../contexts/authContext'
-import Button from './buttons/Button'
 import { useNavigate } from 'react-router-dom'
+import { Button, Input } from '@nextui-org/react'
 
 function LoginForm () {
   const [formData, setFormData] = useState({

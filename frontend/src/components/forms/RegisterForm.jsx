@@ -4,7 +4,7 @@ import Input from './inputs/Input'
 import './Form.css'
 import { validateRegisterForm } from '../../services/formAuthValidation'
 import { toast } from 'react-toastify'
-import useAuth from '../../hooks/Auth'
+import { useAuth } from '../../contexts/authContext'
 
 function RegisterForm () {
   /* Version simple mais repetitive:

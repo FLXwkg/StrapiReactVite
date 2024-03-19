@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../contexts/authContext'
-import Button from '../../components/forms/buttons/Button'
+import { Button } from '@nextui-org/react'
 
 function Dashboard () {
   const navigate = useNavigate()
