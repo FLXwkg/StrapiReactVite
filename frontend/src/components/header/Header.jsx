@@ -1,9 +1,8 @@
 import { Button } from '@nextui-org/react'
+// import { useAuth } from '../../contexts/authContext'
 
 function Header () {
-  /* const authString = localStorage.getItem("AUTH");
-  const AUTH = JSON.parse(authString);
-  const token = AUTH?.jwt; */
+  // const { isLoggedIn } = useAuth()
   return (
     <header className='flex flex-row w-full p-3 justify-around' color=''>
       <nav className='flex w-full align-center gap-9 ms-20 font-medium'>

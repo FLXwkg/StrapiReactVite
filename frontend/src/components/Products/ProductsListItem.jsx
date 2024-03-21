@@ -10,13 +10,13 @@ function ProductsListItem ({ product }) {
   })
 
   return (
-    <Card className='product-item'>
+    <Card className='w-80'>
       <CardHeader>
-        <h3 className='product-name'>{name}</h3>
+        <h3 className='text-center'>{name}</h3>
       </CardHeader>
       <CardBody>
-        <img className='product-pict' src={urls[0]} />
-        <p className='product-price'>{price} €</p>
+        <img className='rounded-lg' src={urls[0]} />
+        <p className='product-price text-center'>{price} €</p>
         <p className='product-desc'>{description}</p>
       </CardBody>
     </Card>

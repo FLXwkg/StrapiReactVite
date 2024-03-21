@@ -17,6 +17,7 @@ const initialState = {
   jwt: null,
   user: null,
   loading: false,
+  isLoggedIn: false,
   error: null
 }
 
@@ -31,7 +32,8 @@ const authReducer = (prevState, action) => {
       return {
         ...initialState,
         jwt: action.data.jwt,
-        user: action.data.user
+        user: action.data.user,
+        isLoggedIn: true
       }
     case actionTypes.LOADING:
       return {
