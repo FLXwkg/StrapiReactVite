@@ -8,6 +8,8 @@ import Artisan from '../pages/Artisan'
 import Auth from '../pages/Auth'
 import PrivateRoutes from './PrivateRouteMiddleware'
 import Dashboard from '../pages/protected/Dashboard'
+import Register from '../pages/Register'
+
 function Router () {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ function Router () {
           <Route path=':artisanSlug' element={<Artisan />} />
         </Route>
         <Route path='authentication' element={<Auth />} />
+        <Route path='register' element={<Register />} />
         <Route path='about' element={<About />} />
         <Route path='contact' element={<Contact />} />
         <Route path='services' element={<Services />} />

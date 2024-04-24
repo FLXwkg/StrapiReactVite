@@ -1,8 +1,8 @@
 import { Button } from '@nextui-org/react'
-// import { useAuth } from '../../contexts/authContext'
+import { useAuth } from '../../contexts/authContext'
 
 function Header () {
-  // const { isLoggedIn } = useAuth()
+  const { state: { isLoggedIn } } = useAuth()
   return (
     <header className='flex flex-row w-full p-3 justify-around' color=''>
       <nav className='flex w-full align-center gap-9 ms-20 font-medium'>
@@ -12,9 +12,15 @@ function Header () {
         <a href='/about'>About</a>
         <a href='/contact'>Contact</a>
       </nav>
-      <Button className='ms-80' type='button'>
-        <a href='/authentication'>Connexion</a>
-      </Button>
+      {isLoggedIn
+        ? <Button className='ms-80' type='button'><a href='/authentication'>Déconnexion</a></Button>
+        : <div className='flex flex-row'>
+          <Button><a href='/register'>S'inscrire</a></Button>
+          <Button className='ms-80' type='button'>
+            <a href='/authentication'>Connexion</a>
+          </Button>
+        </div>}
+
     </header>
   )
 }
