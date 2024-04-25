@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useReducer } from 'react'
-import { loginApi } from '../services/api'
+import { loginApi, registerApi } from '../services/api'
 import { toast } from 'react-toastify'
 
 const AuthContext = createContext()
@@ -75,6 +75,26 @@ const authFactory = (dispatch) => ({
   },
   logout: () => {
     dispatch({ type: actionTypes.LOGOUT })
+  },
+  // userData {username, email, password}
+  register: async (userData) => {
+    dispatch({ type: actionTypes.LOADING })
+    try {
+      const result = await registerApi(userData)
+      dispatch({
+        type: actionTypes.REGISTER,
+        data: {
+          user: result.user,
+          jwt: result.jwt
+        }
+      })
+    } catch (error) {
+      toast.error('Erreur lors de l\'inscription. Veuillez réessayer.')
+      dispatch({
+        type: actionTypes.ERROR,
+        data: { error: 'Erreur lors de l\'inscription. Veuillez réessayer.' }
+      })
+    }
   }
 })
 

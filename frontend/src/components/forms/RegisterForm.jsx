@@ -1,30 +1,28 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { validateRegisterForm } from '../../services/formAuthValidation'
 import { toast } from 'react-toastify'
 import { useAuth } from '../../contexts/authContext'
 import { Button, Input } from '@nextui-org/react'
+import { useNavigate } from 'react-router-dom'
 
 function RegisterForm () {
   /* Version simple mais repetitive:
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('') */
 
-  const { error, register, loading } = useAuth()
+  const navigate = useNavigate()
+  const { error, register, loading, state: { user, jwt } } = useAuth()
 
   const [formData, setFormData] = useState({
-    firstName: 'Flex',
-    lastName: 'Wukong',
-    email: 'rastasinge2003@gmail.com',
-    userName: 'FLX',
+    email: 'ewenheas13@gmail.com',
+    username: 'Ewen',
     password: 'COUCOU'
   })
 
   const [errors, setErrors] = useState({
-    firstName: null,
-    lastName: null,
     email: null,
-    userName: null,
+    username: null,
     password: null
   })
 
@@ -35,40 +33,24 @@ function RegisterForm () {
     })
   }
 
-  const handleError = (event) => {
+  useEffect(() => {
+    if (user && jwt) {
+      navigate('/dashboard')
+    }
+  }, [user])
+
+  const handleSubmit = (event) => {
     event.preventDefault()
     const _errors = validateRegisterForm(formData)
     if (_errors) {
       setErrors(_errors)
     }
-    toast.error(`Formulaire soumis : ${formData.lastName} ${formData.firstName}`)
-  }
-
-  const handleSubmit = (event) => {
-    handleError()
+    toast.info(`Formulaire soumis : ${formData.username}`)
     register(formData)
   }
 
   return (
     <form className='flex flex-col gap-2'>
-      <Input
-        name='lastName'
-        label='Nom : '
-        placeholder='Entrez votre nom'
-        value={formData.lastName}
-        onChange={handleChange}
-        error={errors.lastName}
-        required
-      />
-      <Input
-        name='firstName'
-        label='Prenom : '
-        placeholder='Entrez votre prénom'
-        value={formData.firstName}
-        onChange={handleChange}
-        error={errors.firstName}
-        required
-      />
       <Input
         type='email'
         name='email'
@@ -80,19 +62,19 @@ function RegisterForm () {
         required
       />
       <Input
-        name='userName'
+        name='username'
         label='Pseudo : '
         placeholder='Entrez votre pseudo'
-        value={formData.userName}
+        value={formData.username}
         onChange={handleChange}
-        error={errors.userName}
+        error={errors.username}
         required
       />
       <Input
         type='password'
         name='password'
         label='Mot de passe : '
-        placeholder='Entrez votre Prénom'
+        placeholder='Entrez votre mot de passe'
         value={formData.password}
         onChange={handleChange}
         error={errors.password}

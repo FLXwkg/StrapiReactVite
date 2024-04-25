@@ -17,4 +17,13 @@ const loginApi = async (credentials) => {
   return response?.data
 }
 
-export { loginApi }
+/**
+ * @param {object} userData User data object containing fields like email, username, password, etc.
+ * @return {object} Registration response containing JWT token and user data
+ */
+const registerApi = async (userData) => {
+  const response = await axiosInstance.post('/auth/local/register', userData)
+  return response?.data
+}
+
+export { loginApi, registerApi }
