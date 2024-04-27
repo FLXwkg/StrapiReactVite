@@ -23,7 +23,7 @@ function Dashboard () {
     <div className='flex flex-col items-center gap-6'>
       <h1>Profil de {user.username}</h1>
       {isArtisan
-        ? <div>
+        ? <div className='flex flex-col items-center'>
           <ArtisanProfile artisan={artisan} />
           <UserProfile user={user} />
           </div>
