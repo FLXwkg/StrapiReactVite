@@ -11,7 +11,6 @@ const useFetch = (endpoint) => {
       setIsLoading(true)
       try {
         const response = await axios.get(process.env.REACT_APP_API_URL + endpoint)
-        console.log(response)
         setResponse(response.data.data)
         setIsLoading(false)
       } catch (error) {
