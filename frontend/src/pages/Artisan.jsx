@@ -7,10 +7,10 @@ import ProductsList from '../components/Products/ProductsList'
 function Artisan () {
   const { artisanSlug } = useParams()
   const { response, error, loading } = useFetch(
-    `${process.env.REACT_APP_API_URL}/artisans?filters[slug][$eq]=${artisanSlug}&populate=*`
+    `/artisans?filters[slug][$eq]=${artisanSlug}&populate=*`
   )
   const { response: products, error: productsError, loading: productsLoading } = useFetch(
-        `${process.env.REACT_APP_API_URL}/produits?filters[artisan][slug][$eq]=${artisanSlug}&populate=*`
+        `/produits?filters[artisan][slug][$eq]=${artisanSlug}&populate=*`
   )
   if (loading || productsLoading) return <h1>Chargement...</h1>
   if (error || productsError) return <pre>{JSON.stringify(error, null, 2)}</pre>

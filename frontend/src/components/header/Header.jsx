@@ -13,7 +13,7 @@ function Header () {
         <a href='/contact'>Contact</a>
       </nav>
       {isLoggedIn
-        ? <Button className='ms-80' type='button'><a href='/authentication'>Déconnexion</a></Button>
+        ? <Button className='ms-80' type='button'><a href='/authentication'>Mon profil</a></Button>
         : <div className='flex flex-row'>
           <Button><a href='/register'>S'inscrire</a></Button>
           <Button className='ms-80' type='button'>
