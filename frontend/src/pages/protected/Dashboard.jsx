@@ -12,6 +12,7 @@ function Dashboard () {
   let isArtisan = false
   let artisan = {}
   if (response) {
+    console.log('response :>> ', response)
     isArtisan = response.isArtisan
     artisan = response.artisan
   }
@@ -23,10 +24,11 @@ function Dashboard () {
     <div className='flex flex-col items-center gap-6'>
       <h1>Profil de {user.username}</h1>
       {isArtisan
-        ? <div className='flex flex-col items-center'>
-          <ArtisanProfile artisan={artisan} />
-          <UserProfile user={user} />
-          </div>
+        ? (
+          <div className='flex flex-col items-center'>
+            <ArtisanProfile artisan={artisan} />
+            <UserProfile user={user} />
+          </div>)
         : <UserProfile user={user} />}
       <Button onClick={handleLogout}>Se déconnecter</Button>
     </div>

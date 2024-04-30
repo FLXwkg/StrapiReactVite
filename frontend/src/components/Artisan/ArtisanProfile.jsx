@@ -9,6 +9,9 @@ function ArtisanProfile ({ artisan }) {
   const shoplink = () => {
     navigate(`/artisans/${artisan.slug}`)
   }
+  const modifyShopLink = () => {
+    navigate('/mon-shop')
+  }
   return (
     <Card className='flex flex-col items-center w-1/3'>
       <CardHeader className='flex flex-col items-center font-semibold'>
@@ -21,6 +24,7 @@ function ArtisanProfile ({ artisan }) {
       <CardFooter className='flex flex-col text-center gap-4 p-8'>
         <p>{artisan.description}</p>
         <a onClick={shoplink}>Voir mon shop</a>
+        <a onClick={modifyShopLink}>Modifier mon shop</a>
       </CardFooter>
     </Card>
   )
