@@ -2,7 +2,6 @@ import PropTypes from 'prop-types'
 import ProductsManagerItem from './ProductsManagerItem'
 
 function ProductsManager ({ products }) {
-  console.log('p2 :>> ', products)
   return (
     <div className='flex flex-col'>
       <h2 className='flex justify-center p-3 w-full font-semibold'>Liste de vos produits</h2>

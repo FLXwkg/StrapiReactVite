@@ -1,4 +1,5 @@
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react'
+import { PencilSquareIcon } from '@heroicons/react/24/outline'
+import { Button, Card, CardBody, CardFooter, CardHeader } from '@nextui-org/react'
 import PropTypes from 'prop-types'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,8 +24,11 @@ function ArtisanProfile ({ artisan }) {
       </CardBody>
       <CardFooter className='flex flex-col text-center gap-4 p-8'>
         <p>{artisan.description}</p>
-        <a onClick={shoplink}>Voir mon shop</a>
-        <a onClick={modifyShopLink}>Modifier mon shop</a>
+        <Button onClick={shoplink}>Voir mon shop</Button>
+        <Button onClick={modifyShopLink}>
+          Modifier mon Shop
+          <PencilSquareIcon className='w-5' />
+        </Button>
       </CardFooter>
     </Card>
   )

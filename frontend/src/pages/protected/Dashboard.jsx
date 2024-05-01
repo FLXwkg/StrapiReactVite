@@ -20,6 +20,9 @@ function Dashboard () {
     logout()
     navigate('/authentication')
   }
+  const createArtisan = () => {
+    navigate('/devenir-artisan')
+  }
   return (
     <div className='flex flex-col items-center gap-6'>
       <h1>Profil de {user.username}</h1>
@@ -29,7 +32,12 @@ function Dashboard () {
             <ArtisanProfile artisan={artisan} />
             <UserProfile user={user} />
           </div>)
-        : <UserProfile user={user} />}
+        : (
+          <div className='flex flex-col items-center'>
+            <UserProfile user={user} />
+            <Button onClick={createArtisan}>Devenir Artisan</Button>
+          </div>
+          )}
       <Button onClick={handleLogout}>Se déconnecter</Button>
     </div>
   )

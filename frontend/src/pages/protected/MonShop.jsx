@@ -2,11 +2,14 @@ import axios from 'axios'
 import ProductsManager from '../../components/Products/ProductsManager'
 import { useFetchHeaders } from '../../hooks/Api'
 import { useEffect, useState } from 'react'
+import ArtisanModifier from '../../components/Artisan/ArtisanModifier'
 function MonShop () {
   const { response, isLoading, error: errorHeaders } = useFetchHeaders('/users/me?populate=artisan.profilePicture')
+  const userId = response?.id
   const [products, setProducts] = useState()
   const [productsError, setProductsError] = useState()
-  const artisanSlug = response?.artisan?.slug
+  const artisan = response?.artisan
+  const artisanSlug = artisan?.slug
 
   useEffect(() => {
     const getData = async () => {
@@ -25,9 +28,13 @@ function MonShop () {
   if (isLoading) return <h2>Loading ...</h2>
   if (errorHeaders) return <pre>{JSON.stringify(errorHeaders, null, 2)}</pre>
 
-  console.log('products :>> ', products)
   return (
     <>
+      {
+        artisan && products && userId
+          ? (<ArtisanModifier userId={userId} artisan={artisan} products={products} />)
+          : (<p className='text-center text-gray-600'>Aucun artisan trouvé.</p>)
+      }
       {
         productsError
           ? (<p className='text-center text-gray-600'>Aucun produit trouvé.</p>)

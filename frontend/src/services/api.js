@@ -26,4 +26,9 @@ const registerApi = async (userData) => {
   return response?.data
 }
 
-export { loginApi, registerApi }
+const updateArtisan = async (artisan, id, headers) => {
+  const response = await axiosInstance.put(`/artisans/${id}`, artisan, headers)
+  return response?.data
+}
+
+export { loginApi, registerApi, updateArtisan }
