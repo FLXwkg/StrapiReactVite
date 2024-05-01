@@ -8,6 +8,11 @@ const axiosInstance = axios.create({
   }
 })
 
+const axiosPictureInstance = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
+  timeout: 10000
+})
+
 /**
  * @param {object} credentials { identifier, password }
  * @return { object } { jwt, user }
@@ -26,9 +31,19 @@ const registerApi = async (userData) => {
   return response?.data
 }
 
+const uploadPicture = async (picture) => {
+  const response = await axiosPictureInstance.post('/upload', picture)
+  return response?.data
+}
+
+const createArtisan = async (artisan, headers) => {
+  const response = await axiosInstance.post('/artisans', artisan, headers)
+  return response?.data
+}
+
 const updateArtisan = async (artisan, id, headers) => {
   const response = await axiosInstance.put(`/artisans/${id}`, artisan, headers)
   return response?.data
 }
 
-export { loginApi, registerApi, updateArtisan }
+export { loginApi, registerApi, uploadPicture, createArtisan, updateArtisan }

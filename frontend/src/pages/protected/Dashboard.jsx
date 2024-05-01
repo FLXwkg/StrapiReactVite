@@ -4,11 +4,15 @@ import { Button } from '@nextui-org/react'
 import { useFetchHeaders } from '../../hooks/Api'
 import ArtisanProfile from '../../components/Artisan/ArtisanProfile'
 import UserProfile from '../../components/User/UserProfile'
+import { useState } from 'react'
+import ArtisanForm from '../../components/forms/ArtisanForm'
 
 function Dashboard () {
   const navigate = useNavigate()
   const { logout, state: { user } } = useAuth()
   const { response } = useFetchHeaders('/users/me?populate=artisan.profilePicture')
+  const [showArtisanForm, setShowArtisanForm] = useState(false)
+
   let isArtisan = false
   let artisan = {}
   if (response) {
@@ -21,7 +25,7 @@ function Dashboard () {
     navigate('/authentication')
   }
   const createArtisan = () => {
-    navigate('/devenir-artisan')
+    setShowArtisanForm(true)
   }
   return (
     <div className='flex flex-col items-center gap-6'>
@@ -35,7 +39,11 @@ function Dashboard () {
         : (
           <div className='flex flex-col items-center'>
             <UserProfile user={user} />
-            <Button onClick={createArtisan}>Devenir Artisan</Button>
+            {
+              showArtisanForm
+                ? <ArtisanForm />
+                : <Button onClick={createArtisan}>Devenir Artisan</Button>
+            }
           </div>
           )}
       <Button onClick={handleLogout}>Se déconnecter</Button>
