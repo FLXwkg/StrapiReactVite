@@ -67,7 +67,8 @@
     },
     "isArtisan": {
       "type": "boolean",
-      "default": false
+      "default": false,
+      "required": true
     },
     "artisan": {
       "type": "relation",

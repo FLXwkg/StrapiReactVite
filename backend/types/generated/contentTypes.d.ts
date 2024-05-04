@@ -833,7 +833,9 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
-    isArtisan: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isArtisan: Attribute.Boolean &
+      Attribute.Required &
+      Attribute.DefaultTo<false>;
     artisan: Attribute.Relation<
       'plugin::users-permissions.user',
       'oneToOne',
