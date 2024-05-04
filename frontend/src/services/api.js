@@ -31,19 +31,10 @@ const registerApi = async (userData) => {
   return response?.data
 }
 
-const uploadPicture = async (picture) => {
-  const response = await axiosPictureInstance.post('/upload', picture)
-  return response?.data
-}
-
-const createArtisan = async (artisan, headers) => {
-  const response = await axiosInstance.post('/artisans', artisan, headers)
-  return response?.data
-}
 
 const updateArtisan = async (artisan, id, headers) => {
   const response = await axiosInstance.put(`/artisans/${id}`, artisan, headers)
   return response?.data
 }
 
-export { loginApi, registerApi, uploadPicture, createArtisan, updateArtisan }
+export { loginApi, registerApi, updateArtisan }

@@ -1,18 +1,12 @@
-import { Card, CardBody, CardHeader } from '@nextui-org/react'
 import PropTypes from 'prop-types'
 
 function UserProfile ({ user }) {
   return (
-    <Card className='flex flex-col items-center w-1/3'>
-      <CardHeader className='flex flex-col items-center font-semibold'>
-        Votre profil utilisateur :
-      </CardHeader>
-      <CardBody className='w-80'>
-        <h1>Nom : {user.username}</h1>
-        <h2>Email : {user.email}</h2>
-        <img className='rounded-md' src='https://i.pravatar.cc/150?u=a042581f4e29026704d' />
-      </CardBody>
-    </Card>
+    <div className='max-w-lg mx-auto bg-white rounded-lg shadow-lg p-6 mt-10'>
+      <h2 className='text-2xl font-semibold text-gray-800 mb-4'>Profil de {user.username}</h2>
+      <p className='text-md text-gray-700 mb-1'><span className='font-semibold'>Nom d'utilisateur:</span> {user.username}</p>
+      <p className='text-md text-gray-700'><span className='font-semibold'>Email:</span> {user.email}</p>
+    </div>
   )
 }
 UserProfile.propTypes = {

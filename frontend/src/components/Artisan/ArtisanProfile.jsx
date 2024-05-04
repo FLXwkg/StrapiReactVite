@@ -14,7 +14,7 @@ function ArtisanProfile ({ artisan }) {
     navigate('/mon-shop')
   }
   return (
-    <Card className='flex flex-col items-center w-1/3'>
+    <Card className='flex flex-col items-center'>
       <CardHeader className='flex flex-col items-center font-semibold'>
         Votre profil d'artisan :
         <h1>{artisan.name}</h1>
