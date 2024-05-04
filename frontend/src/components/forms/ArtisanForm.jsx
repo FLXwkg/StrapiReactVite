@@ -44,7 +44,13 @@ function ArtisanForm () {
     try {
       event.preventDefault()
 
-      const generateSlug = name => name.toLowerCase().replace(/\s+/g, '-').replace(/[^\w\-]+/g, '').replace(/\-\-+/g, '-')
+      const generateSlug = name => name
+        .normalize('NFD') // Normaliser les caractères accentués en caractères de base et diacritiques
+        .toLowerCase()
+        .replace(/\p{Diacritic}/gu, '') // Supprimer les diacritiques
+        .replace(/\s+/g, '-') // Remplacer les espaces par des tirets
+        .replace(/[^\w-]+/g, '') // Supprimer les caractères non alphanumériques sauf les tirets
+        .replace(/-{2,}/g, '-') // Remplacer plusieurs tirets consécutifs par un seul tiret
       const mySlug = generateSlug(formData.name)
       const formDataWithPicture = new FormData()
       if (formData.profilePicture) {
@@ -67,7 +73,7 @@ function ArtisanForm () {
           Authorization: 'Bearer ' + jwt
         }
       })
-      if (response.status === 200) {
+      if (response.status === '200') {
         toast.success('Artisan créé avec succès')
       } else {
         toast.error(`Failed to create artisan: ${response.statusText}`)
