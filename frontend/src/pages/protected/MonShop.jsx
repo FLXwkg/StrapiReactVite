@@ -10,6 +10,7 @@ function MonShop () {
   const [productsError, setProductsError] = useState()
   const artisan = response?.artisan
   const artisanSlug = artisan?.slug
+  const artisanId = artisan?.id
 
   useEffect(() => {
     const getData = async () => {
@@ -38,7 +39,7 @@ function MonShop () {
       {
         productsError
           ? (<p className='text-center text-gray-600'>Aucun produit trouvé.</p>)
-          : (<ProductsManager products={products} />)
+          : (<ProductsManager products={products} artisanId={artisanId} />)
       }
     </>
   )

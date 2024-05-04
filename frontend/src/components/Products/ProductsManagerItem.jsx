@@ -11,17 +11,18 @@ function ProductsManagerItem ({ product }) {
 
   return (
     product
-      ? <Card className='w-80'>
-        <CardHeader>
-          <h3 className='text-center'>{name}</h3>
-        </CardHeader>
-        <CardBody>
-          <img className='rounded-lg' src={urls[0]} />
-          <p className='product-price text-center'>{price} €</p>
-          <p className='product-desc'>{description}</p>
-        </CardBody>
-      </Card>
-      : console.log('productclo :>> ', product)
+      ? (
+        <Card className='w-80'>
+          <CardHeader>
+            <h3 className='text-center'>{name}</h3>
+          </CardHeader>
+          <CardBody>
+            <img className='rounded-lg' src={urls[0]} />
+            <p className='product-price text-center'>{price} €</p>
+            <p className='product-desc'>{description}</p>
+          </CardBody>
+        </Card>)
+      : null
   )
 }
 

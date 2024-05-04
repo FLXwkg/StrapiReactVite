@@ -31,10 +31,19 @@ const registerApi = async (userData) => {
   return response?.data
 }
 
-
 const updateArtisan = async (artisan, id, headers) => {
   const response = await axiosInstance.put(`/artisans/${id}`, artisan, headers)
   return response?.data
 }
 
-export { loginApi, registerApi, updateArtisan }
+const updateProduit = async (produit, id, headers) => {
+  const response = await axiosInstance.put(`/produits/${id}`, produit, headers)
+  return response?.data
+}
+
+const createProduit = async (produit, headers) => {
+  const response = await axiosInstance.post('/produits', produit, headers)
+  return response?.data
+}
+
+export { loginApi, registerApi, updateArtisan, updateProduit, createProduit }

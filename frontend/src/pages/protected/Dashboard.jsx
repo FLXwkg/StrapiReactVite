@@ -16,7 +16,6 @@ function Dashboard () {
   let isArtisan = false
   let artisan = {}
   if (response) {
-    console.log('response :>> ', response)
     isArtisan = response.isArtisan
     artisan = response.artisan
   }
