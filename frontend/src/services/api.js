@@ -8,11 +8,6 @@ const axiosInstance = axios.create({
   }
 })
 
-const axiosPictureInstance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
-  timeout: 10000
-})
-
 /**
  * @param {object} credentials { identifier, password }
  * @return { object } { jwt, user }

@@ -4,15 +4,18 @@ import { NextUIProvider } from '@nextui-org/react'
 import { AuthProvider } from './contexts/authContext'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { CartProvider } from './contexts/cartContext'
 
 function App () {
   return (
     <>
       <NextUIProvider>
         <AuthProvider>
-          <ToastContainer />
-          <Header />
-          <Router />
+          <CartProvider>
+            <ToastContainer />
+            <Header />
+            <Router />
+          </CartProvider>
         </AuthProvider>
       </NextUIProvider>
     </>

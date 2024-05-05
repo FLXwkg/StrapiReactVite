@@ -10,6 +10,7 @@ import PrivateRoutes from './PrivateRouteMiddleware'
 import Dashboard from '../pages/protected/Dashboard'
 import Register from '../pages/Register'
 import MonShop from '../pages/protected/MonShop'
+import MonPanier from '../pages/protected/MonPanier'
 
 function Router () {
   return (
@@ -30,6 +31,9 @@ function Router () {
         </Route>
         <Route path='mon-shop' element={<PrivateRoutes />}>
           <Route index element={<MonShop />} />
+        </Route>
+        <Route path='mon-panier' element={<PrivateRoutes />}>
+          <Route index element={<MonPanier />} />
         </Route>
       </Routes>
     </BrowserRouter>

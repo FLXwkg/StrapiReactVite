@@ -1,5 +1,6 @@
 import { Button } from '@nextui-org/react'
 import { useAuth } from '../../contexts/authContext'
+import { ShoppingCartIcon } from '@heroicons/react/24/outline'
 
 function Header () {
   const { state: { isLoggedIn } } = useAuth()
@@ -13,7 +14,16 @@ function Header () {
         <a href='/contact'>Contact</a>
       </nav>
       {isLoggedIn
-        ? <Button className='ms-80' type='button'><a href='/authentication'>Mon profil</a></Button>
+        ? (
+          <div className='flex flex-row gap-3'>
+            <Button className='ms-80' type='button'><a href='/authentication'>Mon profil</a></Button>
+            <Button isIconOnly>
+              <a href='/mon-panier'>
+                <ShoppingCartIcon className='w-5' />
+              </a>
+            </Button>
+          </div>
+          )
         : (
           <div className='flex flex-row'>
             <Button><a href='/register'>S'inscrire</a></Button>
