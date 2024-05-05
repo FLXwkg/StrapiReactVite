@@ -67,11 +67,12 @@ function ProductAddForm ({ onCancel, artisanId }) {
           'Content-Type': 'application/json'
         }
       })
-      if (response.status === 200) {
+      if (response.data.id) {
         toast.success('Produit créé avec succès')
       } else {
         toast.error(`Failed to create product: ${response.statusText}`)
       }
+      window.location.reload()
     } catch (error) {
       // Handle error
       console.error('Error submitting form:', error)

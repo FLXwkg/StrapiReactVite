@@ -41,9 +41,14 @@ const updateProduit = async (produit, id, headers) => {
   return response?.data
 }
 
+const deleteProduit = async (id, headers) => {
+  const response = await axiosInstance.delete(`/produits/${id}`, headers)
+  return response?.data
+}
+
 const createProduit = async (produit, headers) => {
   const response = await axiosInstance.post('/produits', produit, headers)
   return response?.data
 }
 
-export { loginApi, registerApi, updateArtisan, updateProduit, createProduit }
+export { loginApi, registerApi, updateArtisan, updateProduit, createProduit, deleteProduit }

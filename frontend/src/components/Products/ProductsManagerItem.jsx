@@ -3,19 +3,23 @@ import PropTypes from 'prop-types'
 import { useState } from 'react'
 import ProductModifyForm from '../forms/ProductModifyForm'
 import { PencilSquareIcon, XCircleIcon } from '@heroicons/react/24/outline'
+import DeleteProduct from './DeleteProducts'
 
 function ProductsManagerItem ({ product }) {
   const { name, pictures, price, description } = product.attributes
   const urls = []
+  const ids = []
   if (pictures.data) {
     pictures.data.forEach((picture, i) => {
       const url = picture?.attributes?.url
       urls[i] = process.env.REACT_APP_BASE_URL + url
+      ids[i] = picture?.id
     })
   }
 
   const [isHovered, setIsHovered] = useState(false)
   const [isModifying, setIsModifying] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const handleMouse = () => {
     setIsHovered(!isHovered)
@@ -25,24 +29,30 @@ function ProductsManagerItem ({ product }) {
     setIsModifying(!isModifying)
   }
 
+  const handleSetIsDeleting = () => {
+    setIsDeleting(!isModifying)
+  }
+
   return (
     product
       ? (isHovered
           ? (isModifying
               ? (<ProductModifyForm setIsModifying={setIsModifying} product={product} />)
-              : (
-                <Card onMouseLeave={handleMouse} className=' flex flex-col justify-center w-80 h-11/12 py-5'>
-                  <CardBody className='flex flex-row justify-around items-center h-full'>
-                    <Button color='success' onClick={handleSetIsModifying}>
-                      <PencilSquareIcon className='w-5' />
-                      Modifier
-                    </Button>
-                    <Button color='danger'>
-                      Supprimer
-                      <XCircleIcon className='w-5' />
-                    </Button>
-                  </CardBody>
-                </Card>
+              : (isDeleting
+                  ? (<DeleteProduct setIsDeleting={setIsDeleting} productId={product.id} picturesId={ids} />)
+                  : (
+                    <Card onMouseLeave={handleMouse} className=' flex flex-col justify-center w-80 h-11/12 py-5'>
+                      <CardBody className='flex flex-row justify-around items-center h-full'>
+                        <Button color='success' onClick={handleSetIsModifying}>
+                          <PencilSquareIcon className='w-5' />
+                          Modifier
+                        </Button>
+                        <Button color='danger' onClick={handleSetIsDeleting}>
+                          Supprimer
+                          <XCircleIcon className='w-5' />
+                        </Button>
+                      </CardBody>
+                    </Card>)
                 )
             )
           : (
