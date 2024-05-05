@@ -20,17 +20,16 @@ const cartReducer = (state, action) => {
       return {
         ...state,
         // On vérifie si le panier contient déjà l'item
-        items: state.items.some(cartItem => cartItem.item.id === action.data.item.id)
-          // Il est déjà dans le panier : On boucle sur les items pour trouver celui déjà présent
-          ? state.items.map(cartItem => {
-            if (cartItem.item.id === action.data.item.id) {
-              // On augmente sa quantité de 1
-              return { ...cartItem, qty: cartItem.qty + 1 }
-            }
-            return cartItem
-          })
-          // Il n'est pas dans le panier : On ajoute l'item dans le tableau
-          : state.items.concat([{ item: action.data.item, qty: 1 }]) // => item = plat
+        items: state.items
+          ? state.items.some(cartItem => cartItem.item.id === action.data.item.id)
+            ? state.items.map(cartItem => {
+              if (cartItem.item.id === action.data.item.id) {
+                return { ...cartItem, qty: cartItem.qty + 1 }
+              }
+              return cartItem
+            })
+            : state.items.concat([{ item: action.data.item, qty: 1 }])
+          : [{ item: action.data.item, qty: 1 }]
       }
     case actionTypes.REMOVE_FROM_CART:
       return {
