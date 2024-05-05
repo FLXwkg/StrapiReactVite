@@ -37,7 +37,7 @@ const updateArtisan = async (artisan, id, headers) => {
 }
 
 const updateProduit = async (produit, id, headers) => {
-  const response = await axiosInstance.put(`/produits/${id}`, produit, headers)
+  const response = await axiosInstance.put(`/produits/${id}?populate=images`, produit, headers)
   return response?.data
 }
 

@@ -1,20 +1,33 @@
 import { Button, Card, CardBody, CardHeader, Input } from '@nextui-org/react'
 import { useState } from 'react'
-import { XCircleIcon } from '@heroicons/react/24/outline'
+import { XCircleIcon, PencilSquareIcon } from '@heroicons/react/24/outline'
 import PropTypes from 'prop-types'
 import { toast } from 'react-toastify'
-import { createProduit } from '../../services/api'
+import { updateProduit } from '../../services/api'
 import { useAuth } from '../../contexts/authContext'
 import axios from 'axios'
 
-function ProductForm ({ onCancel, artisanId }) {
+function ProductModifyForm ({ setIsModifying, product, artisanId }) {
   const { state: { jwt } } = useAuth()
+  const attributes = product.attributes
+  const urls = []
+  const ids = []
+  if (attributes.pictures.data) {
+    attributes.pictures.data.forEach((picture, i) => {
+      const url = picture?.attributes?.url
+      urls[i] = process.env.REACT_APP_BASE_URL + url
+      ids[i] = picture?.id
+    })
+  }
+  const handleCancel = () => {
+    setIsModifying(false) // Appeler setIsHovered pour modifier l'état du parent lorsque la souris quitte le formulaire
+  }
 
   const [formData, setFormData] = useState({
-    name: '',
-    description: '',
-    pictures: [],
-    price: '',
+    name: attributes.name,
+    description: attributes.description,
+    pictures: ids,
+    price: attributes.price,
     artisan: artisanId
   })
 
@@ -61,17 +74,19 @@ function ProductForm ({ onCancel, artisanId }) {
         }
       }
 
-      const response = await createProduit(productData, {
+      const response = await updateProduit(productData, product.id, {
         headers: {
           Authorization: `Bearer ${jwt}`,
           'Content-Type': 'application/json'
         }
       })
-      if (response.status === 200) {
-        toast.success('Produit créé avec succès')
+      if (response.data.id) {
+        toast.success('Produit modifié avec succès')
       } else {
-        toast.error(`Failed to create product: ${response.statusText}`)
+        toast.error(`Failed to update product: ${response.statusText}`)
       }
+      handleCancel()
+      window.location.reload()
     } catch (error) {
       // Handle error
       console.error('Error submitting form:', error)
@@ -80,15 +95,19 @@ function ProductForm ({ onCancel, artisanId }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Card className='w-80 h-full'>
+    <form>
+      <Card className='w-80 h-11/12 py-5'>
         <CardHeader className='flex flex-row justify-around'>
-          <Button color='success' onClick={handleSubmit}>Ajouter un produit</Button>
-          <Button color='danger' isIconOnly onClick={onCancel}>
+          <Button color='success' onClick={handleSubmit}>
+            <PencilSquareIcon className='w-5' />
+            Modifier
+          </Button>
+          <Button onClick={handleCancel}>
+            Annuler
             <XCircleIcon className='w-5' />
           </Button>
         </CardHeader>
-        <CardBody className='flex flex-col justify-center gap-1'>
+        <CardBody className='flex flex-col justify-center gap-4'>
           <Input
             type='text'
             name='name'
@@ -113,7 +132,22 @@ function ProductForm ({ onCancel, artisanId }) {
             onChange={handleChange}
             required
           />
-          <p className='text-xs pl-4'>Photo:</p>
+          <div className='flex flex-row'>
+            <p className='text-sm pl-4'>Photo:</p>
+            <div className='flex flex-row'>
+              {urls[0]
+                ? (<img
+                    className='rounded-lg w-10'
+                    src={urls[0]} alt='Aucune image'
+                   />)
+                : (
+                  <img
+                    className='rounded-lg w-40'
+                    src={urls[0]} alt='Aucune image'
+                  />
+                  )}
+            </div>
+          </div>
           <input
             className='file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0'
             type='file'
@@ -128,9 +162,9 @@ function ProductForm ({ onCancel, artisanId }) {
   )
 }
 
-ProductForm.propTypes = {
-  onCancel: PropTypes.func,
+ProductModifyForm.propTypes = {
+  product: PropTypes.object,
   artisanId: PropTypes.number
 }
 
-export default ProductForm
+export default ProductModifyForm

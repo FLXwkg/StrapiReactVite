@@ -3,7 +3,7 @@ import ProductsManagerItem from './ProductsManagerItem'
 import { Card, CardBody, CardHeader } from '@nextui-org/react'
 import { PlusIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
-import ProductForm from '../forms/ProductForm'
+import ProductForm from '../forms/ProductAddForm'
 
 function ProductsManager ({ artisanId, products }) {
   const [showAddProduct, setShowAddProduct] = useState(true)
